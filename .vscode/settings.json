@@ -1,0 +1,16 @@
+{
+  "workbench.colorTheme": "Andromeda",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+  "black-formatter.args": ["--line-length", "88"],
+  "errorLens.enabled": true,
+  "errorLens.onSave": true,
+  "errorLens.followCursor": "allLinesExceptActive",
+  "errorLens.fontStyleItalic": true,
+  "errorLens.addNumberOfDiagnostics": true,
+  "errorLens.margin": "1ch",
+  "errorLens.messageTemplate": "$message"
+}

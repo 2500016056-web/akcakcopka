@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rangkuman UTS APB – Analisis Proses Bisnis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161a23;
+    --surface2: #1e2330;
+    --border: #2a3040;
+    --accent: #4f8ef7;
+    --accent2: #f7c24f;
+    --accent3: #4ff7a8;
+    --accent4: #f74f4f;
+    --text: #e8ecf4;
+    --text-muted: #7a8499;
+    --text-dim: #4a5568;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13,15,20,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 14px 10px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    padding: 60px 24px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(79,142,247,0.12);
+    border: 1px solid rgba(79,142,247,0.3);
+    color: var(--accent);
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  h1 span { color: var(--accent); }
+  .hero p { color: var(--text-muted); max-width: 600px; font-size: 16px; }
+
+  /* MAIN */
+  main { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 60px;
+    scroll-margin-top: 60px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.2);
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin: 18px 0 8px;
+  }
+  h3:first-child { margin-top: 0; }
+
+  p { margin-bottom: 10px; color: var(--text); }
+  ul, ol { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 6px; color: var(--text); }
+
+  /* HIGHLIGHT TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 3px 9px;
+    border-radius: 5px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+  .tag-va   { background: rgba(79,247,168,0.12); color: var(--accent3); border: 1px solid rgba(79,247,168,0.25); }
+  .tag-bva  { background: rgba(79,142,247,0.12); color: var(--accent);  border: 1px solid rgba(79,142,247,0.25); }
+  .tag-nva  { background: rgba(247,79,79,0.12);  color: var(--accent4); border: 1px solid rgba(247,79,79,0.25);  }
+  .tag-gold { background: rgba(247,194,79,0.12); color: var(--accent2); border: 1px solid rgba(247,194,79,0.25); }
+  .tag-blue { background: rgba(79,142,247,0.12); color: var(--accent);  border: 1px solid rgba(79,142,247,0.25); }
+
+  /* FORMULA BOX */
+  .formula {
+    background: #0a0c10;
+    border: 1px solid var(--accent);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: var(--accent);
+    line-height: 1.9;
+  }
+  .formula .comment {
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  /* GATEWAY GRID */
+  .gw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .gw-card {
+    background: var(--surface2);
+    border-radius: 10px;
+    padding: 18px;
+    border: 1px solid var(--border);
+  }
+  .gw-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .gw-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .gw-desc { font-size: 13px; color: var(--text-muted); }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  th {
+    background: var(--surface2);
+    color: var(--accent);
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* STEP */
+  .steps { counter-reset: step; }
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .step-num {
+    counter-increment: step;
+    min-width: 28px;
+    height: 28px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ALERT */
+  .alert {
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 14px;
+    border-left: 3px solid;
+  }
+  .alert-warn {
+    background: rgba(247,194,79,0.07);
+    border-color: var(--accent2);
+    color: #e0c870;
+  }
+  .alert-info {
+    background: rgba(79,142,247,0.07);
+    border-color: var(--accent);
+    color: #90b8f8;
+  }
+  .alert-success {
+    background: rgba(79,247,168,0.07);
+    border-color: var(--accent3);
+    color: #7ee8b8;
+  }
+  .alert strong { font-weight: 600; }
+
+  /* WORKED EXAMPLE */
+  .example {
+    background: linear-gradient(135deg, #111620, #141826);
+    border: 1px solid #2e3a52;
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin: 18px 0;
+  }
+  .example-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent3);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* LIFECYCLE DIAGRAM */
+  .lifecycle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .lc-item {
+    flex: 1;
+    min-width: 120px;
+    padding: 16px 12px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .lc-item:last-child { border-right: none; }
+  .lc-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .lc-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .lc-desc { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+  .lc-1 { background: rgba(79,142,247,0.08); } .lc-1 .lc-name { color: #6aa8ff; }
+  .lc-2 { background: rgba(247,194,79,0.08); } .lc-2 .lc-name { color: var(--accent2); }
+  .lc-3 { background: rgba(79,247,168,0.08); } .lc-3 .lc-name { color: var(--accent3); }
+  .lc-4 { background: rgba(200,79,247,0.08); } .lc-4 .lc-name { color: #d07fff; }
+  .lc-5 { background: rgba(247,79,79,0.08);  } .lc-5 .lc-name { color: var(--accent4); }
+  .lc-6 { background: rgba(79,220,247,0.08); } .lc-6 .lc-name { color: #4fd8f7; }
+
+  /* CTE TABLE HIGHLIGHT */
+  .cte-box {
+    background: linear-gradient(135deg, rgba(79,247,168,0.05), rgba(79,142,247,0.05));
+    border: 1px solid rgba(79,247,168,0.2);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin: 18px 0;
+  }
+  .cte-result {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--accent3);
+    margin-top: 8px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  code {
+    background: rgba(79,142,247,0.12);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+  @media(max-width: 500px) { .lifecycle { flex-direction: column; } .lc-item { border-right: none; border-bottom: 1px solid var(--border); } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#ch1">Ch.1 Intro</a>
+  <a href="#ch2">Ch.2 Identifikasi</a>
+  <a href="#ch3">Ch.3 Modeling</a>
+  <a href="#ch4">Ch.4 Advanced</a>
+  <a href="#ch5">Ch.5 Discovery</a>
+  <a href="#ch6">Ch.6 Kualitatif</a>
+  <a href="#ch7">Ch.7 Kuantitatif</a>
+  <a href="#cte">CTE & Hitung</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">📚 OPEN BOOK READY · SISTEM INFORMASI SEM 2</div>
+  <h1>Rangkuman UTS<br><span>Analisis Proses Bisnis</span></h1>
+  <p>Ringkasan lengkap Chapter 1–7, dari BPM Lifecycle, BPMN Gateway, VA/BVA/NVA, hingga cara menghitung Cycle Time Efficiency (CTE) step by step.</p>
+</div>
+
+<main>
+
+<!-- ===== CH1 ===== -->
+<section class="section" id="ch1">
+  <div class="section-header">
+    <span class="section-num">CH. 1</span>
+    <h2>Introduction to BPM</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Definisi Business Process</div>
+    <p>Business process adalah <strong>kumpulan peristiwa (events), aktivitas, dan titik keputusan yang saling terkait</strong>, melibatkan sejumlah aktor dan objek, yang secara kolektif menghasilkan outcome yang bernilai bagi minimal satu pelanggan.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔑 Ingredients of a Business Process (Bahan-bahan Proses Bisnis)</div>
+    <table>
+      <tr><th>Ingredient</th><th>Penjelasan</th><th>Contoh</th></tr>
+      <tr><td><strong>Events</strong></td><td>Peristiwa yang memicu atau mengakhiri proses. Tidak memakan waktu.</td><td>Order diterima, Invoice dibayar</td></tr>
+      <tr><td><strong>Activities</strong></td><td>Pekerjaan yang dilakukan dalam proses. Memakan waktu & sumber daya.</td><td>Check stock, Process payment</td></tr>
+      <tr><td><strong>Decision Points / Gateways</strong></td><td>Titik di mana alur bercabang berdasarkan kondisi.</td><td>Stock available? Yes/No</td></tr>
+      <tr><td><strong>Actors / Resources</strong></td><td>Siapa yang melakukan aktivitas (orang, sistem, organisasi).</td><td>Clerk, Site Engineer, System</td></tr>
+      <tr><td><strong>Objects</strong></td><td>Data atau fisik yang diproses atau digunakan.</td><td>Purchase Order, Invoice, Equipment</td></tr>
+      <tr><td><strong>Outcomes</strong></td><td>Hasil akhir proses, bernilai bagi customer.</td><td>Equipment delivered, Student admitted</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">BPM Lifecycle – 6 Fase Berputar</div>
+    <div class="lifecycle">
+      <div class="lc-item lc-1">
+        <div class="lc-num">FASE 1</div>
+        <div class="lc-name">Process Identification</div>
+        <div class="lc-desc">Identifikasi & prioritas proses bisnis yang perlu dikelola</div>
+      </div>
+      <div class="lc-item lc-2">
+        <div class="lc-num">FASE 2</div>
+        <div class="lc-name">Process Discovery</div>
+        <div class="lc-desc">Dokumentasi as-is process (kondisi saat ini)</div>
+      </div>
+      <div class="lc-item lc-3">
+        <div class="lc-num">FASE 3</div>
+        <div class="lc-name">Process Analysis</div>
+        <div class="lc-desc">Identifikasi masalah, waste, dan peluang perbaikan</div>
+      </div>
+      <div class="lc-item lc-4">
+        <div class="lc-num">FASE 4</div>
+        <div class="lc-name">Process Redesign</div>
+        <div class="lc-desc">Desain ulang proses (to-be process)</div>
+      </div>
+      <div class="lc-item lc-5">
+        <div class="lc-num">FASE 5</div>
+        <div class="lc-name">Process Implementation</div>
+        <div class="lc-desc">Implementasi proses baru ke sistem/orang</div>
+      </div>
+      <div class="lc-item lc-6">
+        <div class="lc-num">FASE 6</div>
+        <div class="lc-name">Process Monitoring</div>
+        <div class="lc-desc">Monitor performa proses yang sudah berjalan</div>
+      </div>
+    </div>
+    <div class="alert alert-info"><strong>💡 Ingat:</strong> Lifecycle bersifat siklus — setelah monitoring, bisa kembali ke identification untuk perbaikan berikutnya!</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Contoh Proses Bisnis Umum</div>
+    <div class="two-col">
+      <ul>
+        <li><strong>Order-to-Cash</strong> – Terima order → kirim → terima bayaran</li>
+        <li><strong>Procure-to-Pay</strong> – Pesan barang → terima → bayar supplier</li>
+        <li><strong>Issue-to-Resolution</strong> – Laporan masalah → selesaikan</li>
+      </ul>
+      <ul>
+        <li><strong>Quote-to-Order</strong> – Buat penawaran → dapat order</li>
+        <li><strong>Application-to-Approval</strong> – Ajukan → proses → disetujui/ditolak</li>
+        <li><strong>Hire-to-Retire</strong> – Rekrut → bekerja → pensiun</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== CH2 ===== -->
+<section class="section" id="ch2">
+  <div class="section-header">
+    <span class="section-num">CH. 2</span>
+    <h2>Process Identification</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Apa itu Process Identification?</div>
+    <p>Mendefinisikan proses bisnis organisasi secara sistematis dan menetapkan kriteria untuk memilih proses mana yang perlu diperbaiki. Hasilnya adalah <strong>Process Architecture</strong> — gambaran semua proses dan keterkaitan antar proses.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🗂️ Kategori Proses (Process Categories)</div>
+    <table>
+      <tr><th>Kategori</th><th>Definisi</th><th>Contoh di Universitas</th><th>Contoh di Perusahaan</th></tr>
+      <tr>
+        <td><span class="tag tag-va">CORE / UTAMA</span></td>
+        <td>Proses <strong>inti</strong> yang langsung menciptakan nilai bagi customer eksternal. Ini adalah alasan utama organisasi ada.</td>
+        <td>Penerimaan mahasiswa, Pengajaran, Penelitian</td>
+        <td>Produksi barang, Penjualan</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-bva">SUPPORT / PENDUKUNG</span></td>
+        <td>Proses yang <strong>mendukung</strong> core process agar bisa berjalan. Tidak langsung ke customer eksternal.</td>
+        <td>IT support, HR (rekrutmen dosen), Keuangan</td>
+        <td>Pembelian (procurement), Akuntansi, Logistik</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-nva">MANAGEMENT</span></td>
+        <td>Proses <strong>manajemen</strong> untuk mengatur dan memantau organisasi. Bersifat generik di semua industri.</td>
+        <td>Perencanaan strategis, Audit mutu, Manajemen risiko</td>
+        <td>Budgeting, KPI monitoring, Audit</td>
+      </tr>
+    </table>
+    <div class="alert alert-warn"><strong>⚠️ Penting:</strong> Batas antara core dan support bisa berubah tergantung model bisnis! Contoh: procurement bisa jadi CORE jika itu adalah bisnis utama perusahaan (e.g., perusahaan trading).</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">✅ Process Checklist – Cara Menentukan Apakah Sesuatu adalah Proses</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div>Apakah bisa diidentifikasi aksi utamanya? (format nama: <code>verb + noun</code>, misal "Process Payment", "Check Application")</div></div>
+      <div class="step"><div class="step-num">2</div><div>Apakah bisa dikontrol? Bersifat repetitif dan individual (bukan project sekali jalan)</div></div>
+      <div class="step"><div class="step-num">3</div><div>Apakah ada customer yang mau membayar hasilnya, atau secara legal wajib dilakukan?</div></div>
+      <div class="step"><div class="step-num">4</div><div>Scopenya tidak terlalu besar (1:1 antara trigger dan aktivitas) dan tidak terlalu kecil (minimal 3 aktor berbeda)</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Relasi Antar Proses</div>
+    <ul>
+      <li><strong>Trigger relation:</strong> Proses A memicu/memulai Proses B</li>
+      <li><strong>Sub-process relation:</strong> Proses B adalah bagian dari Proses A</li>
+      <li><strong>Resource sharing:</strong> Proses A dan B menggunakan sumber daya yang sama</li>
+      <li><strong>Data sharing:</strong> Output data dari A menjadi input B</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Process Selection – Portfolio Matrix</div>
+    <p>Proses dipilih untuk perbaikan berdasarkan dua dimensi utama:</p>
+    <div class="two-col">
+      <div style="background:var(--surface2);border-radius:8px;padding:14px">
+        <h3 style="color:var(--accent2)">Importance (Kepentingan)</h3>
+        <ul style="font-size:13px">
+          <li>Jumlah customer yang terdampak</li>
+          <li>Nilai strategis proses</li>
+          <li>Efek pada pendapatan / biaya</li>
+        </ul>
+      </div>
+      <div style="background:var(--surface2);border-radius:8px;padding:14px">
+        <h3 style="color:var(--accent4)">Health (Kesehatan)</h3>
+        <ul style="font-size:13px">
+          <li>Tingkat masalah / keluhan</li>
+          <li>Efisiensi waktu dan biaya</li>
+          <li>Tingkat error / rework</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:12px; font-size:13px; color:var(--text-muted)">Proses yang <strong style="color:#fff">penting tapi tidak sehat</strong> = prioritas utama untuk diperbaiki.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== CH3 ===== -->
+<section class="section" id="ch3">
+  <div class="section-header">
+    <span class="section-num">CH. 3</span>
+    <h2>Essential Process Modeling (BPMN)</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Elemen Dasar BPMN</div>
+    <table>
+      <tr><th>Elemen</th><th>Simbol</th><th>Penjelasan</th><th>Konvensi Penamaan</th></tr>
+      <tr><td><strong>Start Event</strong></td><td>⭕ (lingkaran tipis)</td><td>Memulai proses, menghasilkan token</td><td>Noun + past participle: "Order received"</td></tr>
+      <tr><td><strong>End Event</strong></td><td>⭕ (lingkaran tebal)</td><td>Mengakhiri proses, mengkonsumsi token</td><td>"Order completed", "Application rejected"</td></tr>
+      <tr><td><strong>Activity / Task</strong></td><td>▭ (kotak bulat)</td><td>Pekerjaan yang dilakukan</td><td>Imperative verb + noun: "Check stock", "Send invoice"</td></tr>
+      <tr><td><strong>Gateway</strong></td><td>◇ (diamond)</td><td>Percabangan atau penggabungan alur</td><td>Pertanyaan: "Stock available?"</td></tr>
+      <tr><td><strong>Sequence Flow</strong></td><td>→ (panah)</td><td>Urutan eksekusi aktivitas</td><td>Bisa diberi label kondisi: [Yes], [No]</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔀 Jenis-jenis Gateway di Bizagi & BPMN</div>
+    <div class="gw-grid">
+      <div class="gw-card">
+        <div class="gw-icon">✕</div>
+        <div class="gw-name">XOR Gateway (Exclusive)</div>
+        <div class="gw-desc"><strong>Split:</strong> Hanya SATU cabang yang diambil berdasarkan kondisi.<br><strong>Join:</strong> Lanjut jika SALAH SATU cabang selesai.<br><br>📍 Pakai ketika: kondisi mutually exclusive (A atau B, tidak mungkin keduanya)</div>
+      </div>
+      <div class="gw-card">
+        <div class="gw-icon">✛</div>
+        <div class="gw-name">AND Gateway (Parallel)</div>
+        <div class="gw-desc"><strong>Split:</strong> SEMUA cabang diaktifkan sekaligus (paralel).<br><strong>Join:</strong> Tunggu SEMUA cabang selesai baru lanjut.<br><br>📍 Pakai ketika: aktivitas bisa/harus dilakukan bersamaan</div>
+      </div>
+      <div class="gw-card">
+        <div class="gw-icon">◯</div>
+        <div class="gw-name">OR Gateway (Inclusive)</div>
+        <div class="gw-desc"><strong>Split:</strong> SATU ATAU LEBIH cabang aktif berdasarkan kondisi.<br><strong>Join:</strong> Tunggu semua cabang yang aktif selesai.<br><br>📍 Pakai ketika: bisa terjadi kombinasi cabang</div>
+      </div>
+      <div class="gw-card">
+        <div class="gw-icon">⬟</div>
+        <div class="gw-name">Event-Based Gateway</div>
+        <div class="gw-desc"><strong>Split:</strong> Menunggu event (pesan/timer) yang datang lebih dulu, cabang tersebut yang diambil.<br><br>📍 Pakai ketika: keputusan bergantung pada event mana yang terjadi duluan</div>
+      </div>
+    </div>
+
+    <div class="alert alert-warn">
+      <strong>⚠️ Tips Bizagi:</strong> Di Bizagi Process Modeler, gateway ditambah dari panel kiri. XOR = tanda X di diamond, AND = tanda + di diamond, OR = tanda O di diamond. Untuk simulation di Bizagi, set probabilitas di setiap outgoing flow dari XOR/OR gateway.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Contoh Penerapan Gateway</div>
+    <div class="example">
+      <div class="example-label">📋 Contoh XOR Gateway – Order-to-Cash</div>
+      <p style="font-size:14px">Receive PO → [Check stock availability]<br>↳ [Stock available? YES] → Confirm PO → Emit Invoice → Ship Goods → Archive Order → END<br>↳ [Stock available? NO] → Reject PO → Archive Order → END</p>
+      <p style="margin-top:10px;font-size:13px;color:var(--text-muted)">XOR Join: kedua jalur bergabung sebelum "Archive Order" karena hanya salah satu yang akan terjadi.</p>
+    </div>
+    <div class="example">
+      <div class="example-label">📋 Contoh AND Gateway – Airport Security Check</div>
+      <p style="font-size:14px">Passenger arrives → [AND Split]<br>↳ Scan boarding pass (paralel)<br>↳ X-ray baggage (paralel)<br>↳ Body scanner (paralel)<br>[AND Join] → Proceed to gate → END</p>
+      <p style="margin-top:10px;font-size:13px;color:var(--text-muted)">Semua tiga pemeriksaan berlangsung bersamaan; AND Join menunggu ketiganya selesai.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Pools & Lanes (untuk Kolaborasi Antar Aktor)</div>
+    <ul>
+      <li><strong>Pool:</strong> Mewakili satu organisasi/participant utama (misal: Customer, Supplier)</li>
+      <li><strong>Lane:</strong> Subdivisi pool mewakili role/departemen dalam organisasi yang sama</li>
+      <li><strong>Message Flow:</strong> Komunikasi antar pool (garis putus-putus dengan lingkaran)</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== CH4 ===== -->
+<section class="section" id="ch4">
+  <div class="section-header">
+    <span class="section-num">CH. 4</span>
+    <h2>Advanced Process Modeling</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Loop / Rework (Pengulangan)</div>
+    <table>
+      <tr><th>Jenis</th><th>Cara Buat di BPMN</th><th>Kapan Pakai</th></tr>
+      <tr>
+        <td><strong>Structured Cycle</strong></td>
+        <td>XOR-split (exit) → ... → XOR-join (entry). SESE fragment.</td>
+        <td>Rework yang terstruktur: coba → cek → ulangi jika perlu</td>
+      </tr>
+      <tr>
+        <td><strong>Loop Activity</strong></td>
+        <td>Tanda loop (↺) di sudut task. Ada completion condition.</td>
+        <td>Pengulangan task yang sama sampai kondisi terpenuhi</td>
+      </tr>
+      <tr>
+        <td><strong>Multi-Instance Activity</strong></td>
+        <td>Tanda ≡ (3 garis) di sudut task. Ada cardinality + completion condition.</td>
+        <td>Task dilakukan berulang untuk banyak objek: minta quote dari 5 supplier</td>
+      </tr>
+      <tr>
+        <td><strong>Arbitrary (Unstructured) Cycle</strong></td>
+        <td>Entry/exit point dari rework tidak mengikuti pola SESE.</td>
+        <td>Proses nyata yang kompleks; sebaiknya dihindari jika bisa</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Event Types di BPMN</div>
+    <table>
+      <tr><th>Tipe Event</th><th>Simbol</th><th>Fungsi</th><th>Contoh</th></tr>
+      <tr><td><strong>Message Event</strong></td><td>✉️ (amplop)</td><td>Triggered oleh pesan dari pihak lain</td><td>PO received, Invoice sent</td></tr>
+      <tr><td><strong>Timer Event</strong></td><td>⏰ (jam)</td><td>Triggered oleh waktu tertentu atau durasi</td><td>Wait until next working day, After 4 weeks</td></tr>
+      <tr><td><strong>Error Event</strong></td><td>⚡ (kilat)</td><td>Exception/error dalam proses</td><td>Payment failed, System error</td></tr>
+      <tr><td><strong>Terminate Event</strong></td><td>⭕ (lingkaran penuh)</td><td>Hentikan SEMUA token dalam proses</td><td>Process cancelled immediately</td></tr>
+    </table>
+    <div class="alert alert-info"><strong>💡 Rule:</strong> Gunakan message event hanya jika aktivitasnya HANYA mengirim/menerima pesan dan tidak ada pekerjaan lain. Jika ada pekerjaan lebih, pakai activity biasa.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exception Handling (Boundary Events)</div>
+    <p>Event yang menempel pada batas (boundary) sebuah activity. Jika event terjadi selama activity berlangsung, alur keluar dari activity tersebut.</p>
+    <ul>
+      <li><strong>Interrupting:</strong> Menghentikan aktivitas dan keluar dari alur utama (simbol solid)</li>
+      <li><strong>Non-interrupting:</strong> Aktivitas tetap berjalan, tapi ada alur tambahan yang dieksekusi (simbol putus-putus)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Ad-hoc Sub-process</div>
+    <p>Sub-proses yang aktivitasnya bisa dilakukan dalam urutan bebas dan berulang. Berguna saat urutan belum diketahui atau sangat fleksibel. Ditandai dengan simbol <code>~</code> di bawah.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== CH5 ===== -->
+<section class="section" id="ch5">
+  <div class="section-header">
+    <span class="section-num">CH. 5</span>
+    <h2>Process Discovery</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Apa itu Process Discovery?</div>
+    <p>Proses menemukan dan mendokumentasikan proses bisnis yang sudah ada (<strong>as-is process</strong>). Melibatkan domain expert dan process analyst bekerja sama.</p>
+    <div class="two-col" style="margin-top:12px">
+      <div style="background:var(--surface2);border-radius:8px;padding:14px">
+        <h3 style="color:var(--accent)">Domain Expert</h3>
+        <p style="font-size:13px">Orang yang tahu proses dari pengalaman kerja sehari-hari. Tapi sering berpikir di level instance ("setiap kasus berbeda") bukan level proses.</p>
+      </div>
+      <div style="background:var(--surface2);border-radius:8px;padding:14px">
+        <h3 style="color:var(--accent2)">Process Analyst</h3>
+        <p style="font-size:13px">Orang yang bisa menerjemahkan pengetahuan domain expert ke dalam model proses. Harus bisa mengabstraksi dari kasus spesifik ke pola umum.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Metode Discovery</div>
+    <table>
+      <tr><th>Metode</th><th>Cara Kerja</th><th>Kelebihan</th><th>Kekurangan</th></tr>
+      <tr>
+        <td><strong>Document Analysis</strong></td>
+        <td>Analisis dokumen yang ada: SOP, org chart, form, kebijakan</td>
+        <td>Bisa dilakukan sebelum wawancara; tidak ganggu operasional</td>
+        <td>Mungkin tidak akurat / tidak up-to-date; tidak process-oriented</td>
+      </tr>
+      <tr>
+        <td><strong>Observation (Active)</strong></td>
+        <td>Analyst memainkan peran (misal: sebagai customer)</td>
+        <td>Pengalaman langsung dari sudut pandang customer</td>
+        <td>Tidak dapat gambaran besar (big picture)</td>
+      </tr>
+      <tr>
+        <td><strong>Observation (Passive)</strong></td>
+        <td>Analyst mengamati aktor bekerja tanpa ikut berpartisipasi</td>
+        <td>Melihat proses nyata, bukan yang "idealnya"</td>
+        <td>Aktor bisa berperilaku berbeda karena sadar diamati (observer bias)</td>
+      </tr>
+      <tr>
+        <td><strong>Interview</strong></td>
+        <td>Wawancara dengan domain expert; bisa structured/unstructured, forward/backward</td>
+        <td>Fleksibel, bisa menggali detail dan exception</td>
+        <td>Pengetahuan terfragmentasi; exception cenderung terlupakan</td>
+      </tr>
+      <tr>
+        <td><strong>Workshop</strong></td>
+        <td>Semua stakeholder kumpul bersama untuk mendiskusikan proses</td>
+        <td>Konsensus cepat; bisa langsung validasi</td>
+        <td>Mahal; dominasi satu orang bisa bias hasilnya</td>
+      </tr>
+      <tr>
+        <td><strong>Automated Process Discovery</strong></td>
+        <td>Gunakan event log dari sistem IT untuk menghasilkan model otomatis (Process Mining)</td>
+        <td>Objektif; berbasis data nyata</td>
+        <td>Butuh data berkualitas; model bisa sangat kompleks</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">3 Tantangan Utama Process Discovery</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div><strong>Fragmented knowledge:</strong> Tidak ada satu orang yang tahu seluruh proses end-to-end. Butuh wawancara banyak orang.</div></div>
+      <div class="step"><div class="step-num">2</div><div><strong>Instance-level thinking:</strong> Domain expert cenderung cerita kasus spesifik ("setiap order berbeda"), analyst harus abstraksi ke pola umum.</div></div>
+      <div class="step"><div class="step-num">3</div><div><strong>Modeling literacy:</strong> Domain expert tidak tahu BPMN, jadi analyst harus menerjemahkan diagram ke bahasa natural untuk validasi.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quality Criteria untuk Process Model</div>
+    <div class="two-col">
+      <ul>
+        <li><strong>Completeness:</strong> Semua aktivitas terwakili</li>
+        <li><strong>Correctness:</strong> Model akurat menggambarkan proses nyata</li>
+        <li><strong>Soundness:</strong> Tidak ada deadlock atau livelock</li>
+      </ul>
+      <ul>
+        <li><strong>Simplicity:</strong> Tidak lebih kompleks dari yang perlu</li>
+        <li><strong>Readability:</strong> Mudah dipahami target audience</li>
+        <li><strong>Consistency:</strong> Terminologi konsisten di seluruh model</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== CH6 ===== -->
+<section class="section" id="ch6">
+  <div class="section-header">
+    <span class="section-num">CH. 6</span>
+    <h2>Qualitative Process Analysis</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Value-Added Analysis – VA, BVA, NVA</div>
+    <p>Setiap langkah dalam proses diklasifikasikan ke dalam tiga kategori:</p>
+
+    <table>
+      <tr><th>Kategori</th><th>Definisi</th><th>Pertanyaan Kunci</th><th>Contoh</th></tr>
+      <tr>
+        <td><span class="tag tag-va">VA</span><br><strong>Value-Adding</strong></td>
+        <td>Langkah yang langsung menciptakan nilai bagi <strong>customer</strong>. Customer mau membayar untuk ini.</td>
+        <td>Apakah customer mau membayar untuk step ini? Apakah hasil akhirnya kurang berharga tanpa step ini?</td>
+        <td>Order-to-cash: Deliver products, Confirm delivery date<br>Admission: Assess application, Notify outcome</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-bva">BVA</span><br><strong>Business Value-Adding</strong></td>
+        <td>Diperlukan untuk <strong>bisnis</strong> berjalan (regulasi, pendapatan, risiko), tapi customer tidak secara langsung merasakannya.</td>
+        <td>Apakah dibutuhkan untuk kumpulkan pendapatan? Apakah wajib secara hukum? Apakah mengurangi risiko bisnis?</td>
+        <td>Order-to-cash: Check credit worthiness, Issue invoice, Collect payment<br>Admission: Verify degree validity, Check language test</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-nva">NVA</span><br><strong>Non-Value-Adding</strong></td>
+        <td><strong>Waste</strong> — tidak ada nilai untuk customer maupun bisnis. Idealnya dieliminasi.</td>
+        <td>Kalau step ini dihapus, apakah customer atau bisnis dirugikan? Biasanya: tidak.</td>
+        <td>Handovers, menunggu, rework, forward PO ke warehouse (jika tidak perlu)<br>Admission: Forward applications to committee (pure handover)</td>
+      </tr>
+    </table>
+
+    <div class="alert alert-success">
+      <strong>✅ Tips analisis:</strong> Pisahkan dulu satu aktivitas menjadi sub-langkah kecil (sebelum task, task itu sendiri, setelah task), baru klasifikasikan masing-masing. Ini membantu karena satu "aktivitas" bisa mengandung langkah VA dan NVA sekaligus.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Waste Analysis – 7 Sumber Pemborosan (Lean)</div>
+    <table>
+      <tr><th>Tipe Waste</th><th>Definisi</th><th>Contoh di Proses Bisnis</th></tr>
+      <tr><td><strong>Transportation</strong></td><td>Pengiriman dokumen/material yang tidak perlu antara tempat/sistem</td><td>Kirim dokumen fisik ke kantor lain, forward email ke beberapa orang</td></tr>
+      <tr><td><strong>Motion</strong></td><td>Gerakan orang secara fisik yang tidak perlu dalam proses</td><td>Berjalan ke departemen lain untuk tanda tangan persetujuan</td></tr>
+      <tr><td><strong>Inventory</strong></td><td>Tumpukan pekerjaan yang menunggu (WIP), tidak ada value saat menunggu</td><td>Tumpukan aplikasi menunggu rapat komite; 3000 aplikasi aktif sekaligus</td></tr>
+      <tr><td><strong>Waiting</strong></td><td>Idle time — task atau resource menunggu input atau pekerjaan</td><td>Approver lambat merespons; batch processing menunggu kepenuhan</td></tr>
+      <tr><td><strong>Defects</strong></td><td>Error yang butuh rework atau koreksi</td><td>Dokumen salah → kirim ulang; kendaraan gagal inspeksi → harus kembali</td></tr>
+      <tr><td><strong>Over-processing</strong></td><td>Mengerjakan lebih dari yang dibutuhkan customer</td><td>Verifikasi dengan akurasi tinggi untuk kasus yang hasilnya sudah jelas</td></tr>
+      <tr><td><strong>Over-production</strong></td><td>Menghasilkan output yang tidak dibutuhkan</td><td>50% quote tidak menghasilkan order; 5% travel request disetujui tapi dibatalkan</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Root Cause Analysis</div>
+    <p>Teknik untuk menemukan <strong>akar masalah</strong>, bukan hanya gejala. Metode yang umum:</p>
+    <ul>
+      <li><strong>5 Whys:</strong> Tanya "Kenapa?" berulang 5 kali sampai akar masalah ditemukan</li>
+      <li><strong>Fishbone / Ishikawa Diagram:</strong> Kategorikan penyebab masalah: People, Process, Technology, Environment, Material, Measurement</li>
+      <li><strong>Issue Register:</strong> Daftar masalah yang teridentifikasi, dikaitkan dengan aktor dan aktivitas</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== CH7 ===== -->
+<section class="section" id="ch7">
+  <div class="section-header">
+    <span class="section-num">CH. 7</span>
+    <h2>Quantitative Process Analysis</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Definisi Ukuran Waktu</div>
+    <table>
+      <tr><th>Ukuran</th><th>Definisi</th><th>Rumus</th></tr>
+      <tr>
+        <td><strong>Processing Time (PT)</strong></td>
+        <td>Waktu yang dihabiskan untuk aktivitas yang <strong>menambah nilai</strong> (VA activities saja, tidak termasuk menunggu)</td>
+        <td>Jumlah waktu semua VA steps</td>
+      </tr>
+      <tr>
+        <td><strong>Cycle Time (CT)</strong></td>
+        <td>Total waktu dari awal hingga akhir proses <strong>termasuk waiting time</strong> (semua waktu yang berlalu)</td>
+        <td>End time − Start time</td>
+      </tr>
+      <tr>
+        <td><strong>Cycle Time Efficiency (CTE)</strong></td>
+        <td>Perbandingan waktu produktif terhadap total waktu. Semakin tinggi semakin baik.</td>
+        <td>CTE = PT / CT × 100%</td>
+      </tr>
+    </table>
+    <div class="formula">
+      CTE = (Processing Time / Cycle Time) × 100%
+      <br><span class="comment">// PT dan CT harus dalam satuan yang SAMA (keduanya jam atau keduanya menit)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTE ===== -->
+<section class="section" id="cte">
+  <div class="section-header">
+    <span class="section-num">FOKUS UTS</span>
+    <h2>Cara Menghitung CTE – Step by Step</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚠️ Aturan Konversi Satuan (WAJIB INGAT)</div>
+    <div class="formula">
+      1 hari kerja = 8 jam kerja
+      <br>1 jam = 60 menit
+      <br>
+      <br>Jadi: 1 hari = 480 menit
+      <br><span class="comment">// Soal sering campur menit dan hari → konversi dulu SEBELUM hitung CTE!</span>
+    </div>
+    <div class="alert alert-warn"><strong>⚠️ Jebakan terbesar:</strong> CT dalam hari, PT dalam jam/menit. Harus disamakan dulu. Ubah CT ke jam: CT(hari) × 8 = CT(jam)</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">4 Formula Flow Analysis (Rumus Cycle Time)</div>
+    <table>
+      <tr><th>Pola Alur</th><th>Formula</th><th>Keterangan</th></tr>
+      <tr>
+        <td><strong>Sequence</strong><br>(satu jalur lurus)</td>
+        <td><code>CT = T1 + T2 + ... + TN</code></td>
+        <td>Jumlahkan semua waktu aktivitas</td>
+      </tr>
+      <tr>
+        <td><strong>Alternative / XOR</strong><br>(percabangan XOR)</td>
+        <td><code>CT = p1×T1 + p2×T2 + ... + pn×Tn</code></td>
+        <td>Kalikan probabilitas × waktu tiap cabang, lalu jumlahkan. p1+p2+...=1</td>
+      </tr>
+      <tr>
+        <td><strong>Parallel / AND</strong><br>(percabangan AND)</td>
+        <td><code>CT = max(T1, T2, ..., TN)</code></td>
+        <td>Ambil waktu terlama dari semua cabang paralel</td>
+      </tr>
+      <tr>
+        <td><strong>Rework Loop</strong><br>(ada kemungkinan ulangi)</td>
+        <td><code>CT = T / (1 − r)</code></td>
+        <td>T = waktu task, r = probabilitas rework (mengulang). <br>Contoh: r=20% → CT = T/0.8</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="cte-box">
+    <div class="card-title" style="color:var(--accent3)">📝 CONTOH SOAL LENGKAP – Hitung CT, PT, dan CTE</div>
+    <p style="font-size:14px; color:var(--text-muted); margin-bottom:16px">Mengacu pada contoh di slide Chapter 7 (Flow Analysis with mixed sequential, parallel, XOR, and rework)</p>
+
+    <div class="example">
+      <div class="example-label">📋 Data Proses (Cycle Time data)</div>
+      <p style="font-size:14px">Urutan proses: A → [XOR: B(60%) atau C(40%)] → [AND: D ‖ E] → F(rework 20%)<br>Waktu: A=1 hari, B=1 hari, C=3 hari, D=3 hari, E=1 hari, F=2 hari</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <strong>Hitung CT bagian XOR (B atau C):</strong><br>
+          <code>CT_XOR = 0.6 × 1 + 0.4 × 3 = 0.6 + 1.2 = 1.8 hari</code><br>
+          <span style="font-size:13px; color:var(--text-muted)">Probabilitas B=60%, C=40% → weighted average</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <strong>Hitung CT bagian AND (D paralel E):</strong><br>
+          <code>CT_AND = max(3, 1) = 3 hari</code><br>
+          <span style="font-size:13px; color:var(--text-muted)">AND ambil yang terlama dari semua cabang paralel</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <strong>Hitung CT bagian Rework (F, 20% rework):</strong><br>
+          <code>CT_F = 2 / (1 − 0.2) = 2 / 0.8 = 2.5 hari</code><br>
+          <span style="font-size:13px; color:var(--text-muted)">r = 0.2 = 20% kemungkinan harus diulang</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <strong>Hitung Total CT (semua dijumlah karena sequential):</strong><br>
+          <code>CT = A + XOR + AND + F_rework = 1 + 1.8 + 3 + 2.5 = <strong>8.3 hari</strong></code>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div>
+          <strong>Misalnya PT (dari slide): Jam kerja per aktivitas:</strong><br>
+          A=2j, B=0.5j, C=3j, D=2j, E=2j, F=2j (rework: 2/0.8=2.5j)<br>
+          <code>PT_XOR = 0.6×0.5 + 0.4×3 = 0.3+1.2 = 1.5 jam</code><br>
+          <code>PT_AND = max(2, 2) = 2 jam</code> (untuk PT, ambil max ATAU jumlahkan? → <strong>max</strong>)<br>
+          <code>PT = 2 + 1.5 + 2 + 2.5 = 8 jam</code>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div>
+          <strong>⚠️ KONVERSI SATUAN dulu sebelum CTE:</strong><br>
+          CT = 8.3 hari × 8 jam/hari = <code>66.4 jam</code><br>
+          PT = 8 jam (sudah dalam jam ✓)
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">7</div>
+        <div>
+          <strong>Hitung CTE:</strong><br>
+          <code>CTE = PT / CT = 8 jam / 66.4 jam = 0.1205 = <strong>12.05%</strong></code>
+        </div>
+      </div>
+    </div>
+
+    <div class="cte-result">CTE = 12.05% ← Artinya hanya 12% waktu yang produktif, 88% adalah waste!</div>
+    <p style="font-size:13px; color:var(--text-muted); margin-top:8px">CTE yang rendah (<50%) menunjukkan banyak waiting time / NVA yang perlu dieliminasi.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔁 Tabel Ringkas: Contoh Rework Loop</div>
+    <table>
+      <tr><th>Probabilitas Rework (r)</th><th>CT dengan T=10 menit</th><th>Penjelasan</th></tr>
+      <tr><td>0% (r=0)</td><td>CT = 10/1.0 = <strong>10 menit</strong></td><td>Tidak pernah rework</td></tr>
+      <tr><td>20% (r=0.2)</td><td>CT = 10/0.8 = <strong>12.5 menit</strong></td><td>Sesekali harus diulang</td></tr>
+      <tr><td>50% (r=0.5)</td><td>CT = 10/0.5 = <strong>20 menit</strong></td><td>Setengahnya rework</td></tr>
+      <tr><td>80% (r=0.8)</td><td>CT = 10/0.2 = <strong>50 menit</strong></td><td>Hampir selalu rework</td></tr>
+      <tr><td>99% (r=0.99)</td><td>CT = 10/0.01 = <strong>1000 menit!</strong></td><td>Hampir selalu gagal → bottleneck parah</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Resource Utilization & Little's Formula</div>
+    <div class="formula">
+      Resource Utilization = (Waktu kerja aktual) / (Total waktu tersedia)
+      <br><span class="comment">// Contoh: 48 jam kerja aktif dari 80 jam tersedia = 60% utilization</span>
+      <br><br>
+      Little's Formula: WIP = λ × CT
+      <br><span class="comment">// WIP = Work-in-Process (jumlah kasus aktif)</span>
+      <br><span class="comment">// λ (lambda) = arrival rate (kasus baru per satuan waktu)</span>
+      <br><span class="comment">// CT = Cycle Time</span>
+    </div>
+    <div class="example">
+      <div class="example-label">📋 Contoh Little's Formula</div>
+      <p style="font-size:14px">Restaurant peak hour: 900 customers dalam 6 jam, 90 customers di dalam pada setiap saat.<br>
+      λ = 900/6 = 150 customers/jam<br>
+      WIP = 90<br>
+      CT = WIP/λ = 90/150 = <strong>0.6 jam = 36 menit</strong> per customer</p>
+    </div>
+    <div class="alert alert-warn"><strong>⚠️ Resource Utilization > 90%</strong> → waiting time meningkat drastis karena antrian (queuing effect). Target ideal: 70–85%.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Keterbatasan Flow Analysis & Kapan Pakai Apa</div>
+    <table>
+      <tr><th>Teknik</th><th>Kelebihan</th><th>Keterbatasan</th></tr>
+      <tr>
+        <td><strong>Flow Analysis</strong></td>
+        <td>Hitung CT, PT, CTE, biaya rata-rata; cepat dan sederhana</td>
+        <td>Tidak mempertimbangkan arrival rate, jumlah resource, waiting time dari antrian</td>
+      </tr>
+      <tr>
+        <td><strong>Queuing Analysis</strong></td>
+        <td>Analisis waiting time berdasarkan λ, μ, jumlah server</td>
+        <td>Hanya cocok untuk satu aktivitas dan satu resource pool</td>
+      </tr>
+      <tr>
+        <td><strong>Simulation (Bizagi)</strong></td>
+        <td>Analisis end-to-end, mencakup waiting time, CT, biaya; cocok untuk what-if</td>
+        <td>Butuh data lengkap; hasil stochastic (perlu banyak run)</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎮 Tips Simulasi di Bizagi</div>
+    <ul>
+      <li>Set <strong>processing time</strong> untuk setiap task (fixed value atau distribusi probabilistik)</li>
+      <li>Set <strong>branching probability</strong> untuk setiap outgoing sequence dari XOR/OR gateway</li>
+      <li>Definisikan <strong>resource pools</strong>: nama, jumlah, biaya per jam, jam kerja</li>
+      <li>Set <strong>arrival rate</strong>: berapa kasus baru per jam/hari, distribusi inter-arrival time</li>
+      <li>Jalankan simulasi berulang kali untuk hasil yang lebih akurat (stochastic)</li>
+      <li>Cek output: average cycle time, resource utilization, waiting time, throughput</li>
+    </ul>
+  </div>
+</section>
+
+<!-- QUICK REF -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">QUICK REF</span>
+    <h2>Cheat Sheet UTS</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Rumus-Rumus Kunci (Hafalan)</div>
+    <div class="formula">
+      <strong>CTE = PT / CT × 100%</strong>
+      <br><span class="comment">// PT dan CT harus sama satuannya (KONVERSI DULU)</span>
+      <br><br>
+      CT Sequence:    CT = T1 + T2 + T3...
+      <br>CT XOR:         CT = p1×T1 + p2×T2 ...   (p1+p2=1)
+      <br>CT Parallel:    CT = max(T1, T2, T3...)
+      <br>CT Rework:      CT = T / (1 - r)
+      <br><br>
+      Little's Formula: WIP = λ × CT
+      <br>Resource Util:  ρ = (waktu kerja aktif) / (total tersedia)
+      <br><br>
+      Konversi: 1 hari = 8 jam = 480 menit
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Klasifikasi Cepat VA/BVA/NVA</div>
+    <table>
+      <tr><th>Pertanyaan</th><th>Hasil</th></tr>
+      <tr><td>Customer mau bayar untuk ini?</td><td><span class="tag tag-va">VA</span></td></tr>
+      <tr><td>Dibutuhkan untuk bisnis / regulasi / kurangi risiko?</td><td><span class="tag tag-bva">BVA</span></td></tr>
+      <tr><td>Handover / menunggu / forward dokumen / rework?</td><td><span class="tag tag-nva">NVA</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Gateway Decision Tree</div>
+    <table>
+      <tr><th>Kondisi</th><th>Gateway</th></tr>
+      <tr><td>HANYA SATU cabang yang aktif (atau/atau)</td><td><span class="tag tag-blue">XOR ✕</span></td></tr>
+      <tr><td>SEMUA cabang aktif bersamaan</td><td><span class="tag tag-va">AND ✛</span></td></tr>
+      <tr><td>SATU ATAU LEBIH cabang aktif (kombinasi mungkin)</td><td><span class="tag tag-gold">OR ◯</span></td></tr>
+      <tr><td>Tunggu event mana yang datang duluan</td><td><span class="tag tag-nva">Event-Based ⬟</span></td></tr>
+    </table>
+  </div>
+
+  <div class="alert alert-success" style="margin-top:20px; font-size:15px; padding: 18px 22px">
+    <strong>🎯 Good luck UTS-nya!</strong> Materi ini open book — fokus pada pemahaman konsep VA/BVA/NVA dan latihan menghitung CTE. Pastikan selalu konversi satuan waktu sebelum hitung CTE. Bizagi: ingat XOR=probabilitas, AND=paralel, semua task perlu processing time.
+  </div>
+</section>
+
+</main>
+</body>
+</html>
